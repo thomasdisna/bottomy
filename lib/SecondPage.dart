@@ -3,21 +3,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:foodiz/homekitchen_tab.dart';
-import 'package:foodiz/widget_style.dart';
+
+
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_text_view/smart_text_view.dart';
 import 'package:intl/intl.dart';
 
+import 'Constants.dart';
 import 'FoodBank.dart';
 import 'LocalStore.dart';
 import 'Resturants.dart';
 
-class MainPage extends StatefulWidget {
+class SecondPage extends StatefulWidget {
   @override
-  _MainPageState createState() => _MainPageState();
+  _SecondPageState createState() => _SecondPageState();
 }
 
-class _MainPageState extends State<MainPage>
+class _SecondPageState extends State<SecondPage>
     with SingleTickerProviderStateMixin {
   TabController _tabContoller;
 
@@ -77,10 +80,10 @@ class _MainPageState extends State<MainPage>
     scrollController = ScrollController();
     scrollController.addListener(() {
       if (scrollController.offset >=
-              scrollController.position.maxScrollExtent &&
+          scrollController.position.maxScrollExtent &&
           !scrollController.position.outOfRange) {
       } else if (scrollController.offset <=
-              scrollController.position.minScrollExtent &&
+          scrollController.position.minScrollExtent &&
           !scrollController.position.outOfRange) {
       } else {}
     });
@@ -168,6 +171,7 @@ class _MainPageState extends State<MainPage>
           padding: EdgeInsets.only(top: _fromTop != 0 ? 7 : 62),
           child: Column(
             children: <Widget>[
+
               Container(
                 decoration: BoxDecoration(
                     color: Color(0xFF23252E),
@@ -180,248 +184,249 @@ class _MainPageState extends State<MainPage>
                     ]),
                 child: _fromTop != 0
                     ? Container(
-                        height: 40,
-                        width: MediaQuery.of(context).size.width,
-                        child: TabBar(
-                          indicator: BoxDecoration(
-                              color: Color((0xFFffd55e)),
-                              borderRadius: BorderRadius.circular(4)),
-                          controller: _tabContoller,
-                          labelColor: Colors.black,
-                          unselectedLabelColor: Colors.white,
-                          indicatorColor: Colors.transparent,
-                          tabs: <Widget>[
-                            Tab(
-                              icon: _tabContoller.index == 0
-                                  ? Image.asset(
-                                      "assets/Template1/image/Foodie/icons/wall.png",
-                                      height: 24,
-                                      width: 24,
-                                      color: Colors.black,
-                                    )
-                                  : Image.asset(
-                                      "assets/Template1/image/Foodie/icons/wall.png",
-                                      height: 24,
-                                      width: 24,
-                                      color: Colors.white,
-                                    ),
-                            ),
-                            Tab(
-                              icon: _tabContoller.index == 1
-                                  ? Image.asset(
-                                      "assets/Template1/image/Foodie/icons/home-kitchen.png",
-                                      height: 24,
-                                      width: 24,
-                                      color: Colors.black,
-                                    )
-                                  : Image.asset(
-                                      "assets/Template1/image/Foodie/icons/home-kitchen.png",
-                                      height: 24,
-                                      width: 24,
-                                      color: Colors.white,
-                                    ),
-                            ),
-                            Tab(
-                              icon: _tabContoller.index == 2
-                                  ? Image.asset(
-                                      "assets/Template1/image/Foodie/icons/shop.png",
-                                      height: 26,
-                                      width: 26,
-                                      color: Colors.black,
-                                    )
-                                  : Image.asset(
-                                      "assets/Template1/image/Foodie/icons/shop.png",
-                                      height: 26,
-                                      width: 26,
-                                      color: Colors.white,
-                                    ),
-                            ),
-                            Tab(
-                              icon: _tabContoller.index == 3
-                                  ? Image.asset(
-                                      "assets/Template1/image/Foodie/icons/market.png",
-                                      height: 24,
-                                      width: 24,
-                                      color: Colors.black,
-                                    )
-                                  : Image.asset(
-                                      "assets/Template1/image/Foodie/icons/market.png",
-                                      height: 24,
-                                      width: 24,
-                                      color: Colors.white,
-                                    ),
-                            ),
-                            Tab(
-                              icon: _tabContoller.index == 4
-                                  ? Image.asset(
-                                      "assets/Template1/image/Foodie/icons/Food-Bank-1.png",
-                                      height: 24,
-                                      width: 24,
-                                      color: Colors.black,
-                                    )
-                                  : Image.asset(
-                                      "assets/Template1/image/Foodie/icons/Food-Bank-1.png",
-                                      height: 24,
-                                      width: 24,
-                                      color: Colors.white,
-                                    ),
-                            ),
-                            Tab(
-                              icon: _tabContoller.index == 5
-                                  ? Image.asset(
-                                      "assets/Template1/image/Foodie/icons/restaurent-wall.png",
-                                      height: 24,
-                                      width: 24,
-                                      color: Colors.black,
-                                    )
-                                  : Image.asset(
-                                      "assets/Template1/image/Foodie/icons/restaurent-wall.png",
-                                      height: 24,
-                                      width: 24,
-                                      color: Colors.white,
-                                    ),
-                            ),
-                          ],
-                        ),
-                      )
-                    : Container(
-                        height: 70,
-                        child: PreferredSize(
-                          child: TabBar(
-                            isScrollable: true,
-                            indicator: BoxDecoration(
-                                color: Color((0xFFffd55e)),
-                                borderRadius: BorderRadius.circular(4)),
-                            controller: _tabContoller,
-                            labelColor: Colors.black,
-                            unselectedLabelColor: Colors.white,
-                            indicatorColor: Colors.transparent,
-                            tabs: <Widget>[
-                              Tab(
-                                child: Text(
-                                  "Foodie Wall",
-                                  style: f14,
-                                  textAlign: TextAlign.center,
-                                ),
-                                icon: _tabContoller.index == 0
-                                    ? Image.asset(
-                                        "assets/Template1/image/Foodie/icons/wall.png",
-                                        height: 24,
-                                        width: 24,
-                                        color: Colors.black,
-                                      )
-                                    : Image.asset(
-                                        "assets/Template1/image/Foodie/icons/wall.png",
-                                        height: 24,
-                                        width: 24,
-                                        color: Colors.white,
-                                      ),
-                              ),
-                              Tab(
-                                child: Text(
-                                  "Home Kitchen",
-                                  style: f14,
-                                  textAlign: TextAlign.center,
-                                ),
-                                icon: _tabContoller.index == 1
-                                    ? Image.asset(
-                                        "assets/Template1/image/Foodie/icons/home-kitchen.png",
-                                        height: 24,
-                                        width: 24,
-                                        color: Colors.black,
-                                      )
-                                    : Image.asset(
-                                        "assets/Template1/image/Foodie/icons/home-kitchen.png",
-                                        height: 24,
-                                        width: 24,
-                                        color: Colors.white,
-                                      ),
-                              ),
-                              Tab(
-                                child: Text(
-                                  "Local Store",
-                                  style: f14,
-                                  textAlign: TextAlign.center,
-                                ),
-                                icon: _tabContoller.index == 2
-                                    ? Image.asset(
-                                        "assets/Template1/image/Foodie/icons/shop.png",
-                                        height: 26,
-                                        width: 26,
-                                        color: Colors.black,
-                                      )
-                                    : Image.asset(
-                                        "assets/Template1/image/Foodie/icons/shop.png",
-                                        height: 26,
-                                        width: 26,
-                                        color: Colors.white,
-                                      ),
-                              ),
-                              Tab(
-                                child: Text(
-                                  "Foodie Market",
-                                  style: f14,
-                                  textAlign: TextAlign.center,
-                                ),
-                                icon: _tabContoller.index == 3
-                                    ? Image.asset(
-                                        "assets/Template1/image/Foodie/icons/market.png",
-                                        height: 24,
-                                        width: 24,
-                                        color: Colors.black,
-                                      )
-                                    : Image.asset(
-                                        "assets/Template1/image/Foodie/icons/market.png",
-                                        height: 24,
-                                        width: 24,
-                                        color: Colors.white,
-                                      ),
-                              ),
-                              Tab(
-                                child: Text(
-                                  "Food Bank",
-                                  style: f14,
-                                ),
-                                icon: _tabContoller.index == 4
-                                    ? Image.asset(
-                                        "assets/Template1/image/Foodie/icons/Food-Bank-1.png",
-                                        height: 24,
-                                        width: 24,
-                                        color: Colors.black,
-                                      )
-                                    : Image.asset(
-                                        "assets/Template1/image/Foodie/icons/Food-Bank-1.png",
-                                        height: 24,
-                                        width: 24,
-                                        color: Colors.white,
-                                      ),
-                              ),
-                              Tab(
-                                child: Text(
-                                  "Restaurants",
-                                  style: f14,
-                                  textAlign: TextAlign.center,
-                                ),
-                                icon: _tabContoller.index == 5
-                                    ? Image.asset(
-                                        "assets/Template1/image/Foodie/icons/restaurent-wall.png",
-                                        height: 24,
-                                        width: 24,
-                                        color: Colors.black,
-                                      )
-                                    : Image.asset(
-                                        "assets/Template1/image/Foodie/icons/restaurent-wall.png",
-                                        height: 24,
-                                        width: 24,
-                                        color: Colors.white,
-                                      ),
-                              ),
-                            ],
-                          ),
-                          preferredSize: Size.fromHeight(100),
+                  height: 40,
+                  width: MediaQuery.of(context).size.width,
+                  child: TabBar(
+                    indicator: BoxDecoration(
+                        color: Color((0xFFffd55e)),
+                        borderRadius: BorderRadius.circular(4)),
+                    controller: _tabContoller,
+                    labelColor: Colors.black,
+                    unselectedLabelColor: Colors.white,
+                    indicatorColor: Colors.transparent,
+                    tabs: <Widget>[
+                      Tab(
+                        icon: _tabContoller.index == 0
+                            ? Image.asset(
+                          "assets/Template1/image/Foodie/icons/wall.png",
+                          height: 24,
+                          width: 24,
+                          color: Colors.black,
+                        )
+                            : Image.asset(
+                          "assets/Template1/image/Foodie/icons/wall.png",
+                          height: 24,
+                          width: 24,
+                          color: Colors.white,
                         ),
                       ),
+                      Tab(
+                        icon: _tabContoller.index == 1
+                            ? Image.asset(
+                          "assets/Template1/image/Foodie/icons/home-kitchen.png",
+                          height: 24,
+                          width: 24,
+                          color: Colors.black,
+                        )
+                            : Image.asset(
+                          "assets/Template1/image/Foodie/icons/home-kitchen.png",
+                          height: 24,
+                          width: 24,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Tab(
+                        icon: _tabContoller.index == 2
+                            ? Image.asset(
+                          "assets/Template1/image/Foodie/icons/shop.png",
+                          height: 26,
+                          width: 26,
+                          color: Colors.black,
+                        )
+                            : Image.asset(
+                          "assets/Template1/image/Foodie/icons/shop.png",
+                          height: 26,
+                          width: 26,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Tab(
+                        icon: _tabContoller.index == 3
+                            ? Image.asset(
+                          "assets/Template1/image/Foodie/icons/market.png",
+                          height: 24,
+                          width: 24,
+                          color: Colors.black,
+                        )
+                            : Image.asset(
+                          "assets/Template1/image/Foodie/icons/market.png",
+                          height: 24,
+                          width: 24,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Tab(
+                        icon: _tabContoller.index == 4
+                            ? Image.asset(
+                          "assets/Template1/image/Foodie/icons/Food-Bank-1.png",
+                          height: 24,
+                          width: 24,
+                          color: Colors.black,
+                        )
+                            : Image.asset(
+                          "assets/Template1/image/Foodie/icons/Food-Bank-1.png",
+                          height: 24,
+                          width: 24,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Tab(
+                        icon: _tabContoller.index == 5
+                            ? Image.asset(
+                          "assets/Template1/image/Foodie/icons/restaurent-wall.png",
+                          height: 24,
+                          width: 24,
+                          color: Colors.black,
+                        )
+                            : Image.asset(
+                          "assets/Template1/image/Foodie/icons/restaurent-wall.png",
+                          height: 24,
+                          width: 24,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+                    : Container(
+                  height: 70,
+                  child: PreferredSize(
+                    child: TabBar(
+                      isScrollable: true,
+                      indicator: BoxDecoration(
+                          color: Color((0xFFffd55e)),
+                          borderRadius: BorderRadius.circular(4)),
+                      controller: _tabContoller,
+                      labelColor: Colors.black,
+                      unselectedLabelColor: Colors.white,
+                      indicatorColor: Colors.transparent,
+                      tabs: <Widget>[
+                        Tab(
+                          child: Text(
+                            "Foodie Wall",
+                            style: f14,
+                            textAlign: TextAlign.center,
+                          ),
+                          icon: _tabContoller.index == 0
+                              ? Image.asset(
+                            "assets/Template1/image/Foodie/icons/wall.png",
+                            height: 24,
+                            width: 24,
+                            color: Colors.black,
+                          )
+                              : Image.asset(
+                            "assets/Template1/image/Foodie/icons/wall.png",
+                            height: 24,
+                            width: 24,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Tab(
+                          child: Text(
+                            "Home Kitchen",
+                            style: f14,
+                            textAlign: TextAlign.center,
+                          ),
+                          icon: _tabContoller.index == 1
+                              ? Image.asset(
+                            "assets/Template1/image/Foodie/icons/home-kitchen.png",
+                            height: 24,
+                            width: 24,
+                            color: Colors.black,
+                          )
+                              : Image.asset(
+                            "assets/Template1/image/Foodie/icons/home-kitchen.png",
+                            height: 24,
+                            width: 24,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Tab(
+                          child: Text(
+                            "Local Store",
+                            style: f14,
+                            textAlign: TextAlign.center,
+                          ),
+                          icon: _tabContoller.index == 2
+                              ? Image.asset(
+                            "assets/Template1/image/Foodie/icons/shop.png",
+                            height: 26,
+                            width: 26,
+                            color: Colors.black,
+                          )
+                              : Image.asset(
+                            "assets/Template1/image/Foodie/icons/shop.png",
+                            height: 26,
+                            width: 26,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Tab(
+                          child: Text(
+                            "Foodie Market",
+                            style: f14,
+                            textAlign: TextAlign.center,
+                          ),
+                          icon: _tabContoller.index == 3
+                              ? Image.asset(
+                            "assets/Template1/image/Foodie/icons/market.png",
+                            height: 24,
+                            width: 24,
+                            color: Colors.black,
+                          )
+                              : Image.asset(
+                            "assets/Template1/image/Foodie/icons/market.png",
+                            height: 24,
+                            width: 24,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Tab(
+                          child: Text(
+                            "Food Bank",
+                            style: f14,
+                          ),
+                          icon: _tabContoller.index == 4
+                              ? Image.asset(
+                            "assets/Template1/image/Foodie/icons/Food-Bank-1.png",
+                            height: 24,
+                            width: 24,
+                            color: Colors.black,
+                          )
+                              : Image.asset(
+                            "assets/Template1/image/Foodie/icons/Food-Bank-1.png",
+                            height: 24,
+                            width: 24,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Tab(
+                          child: Text(
+                            "Restaurants",
+                            style: f14,
+                            textAlign: TextAlign.center,
+                          ),
+                          icon: _tabContoller.index == 5
+                              ? Image.asset(
+                            "assets/Template1/image/Foodie/icons/restaurent-wall.png",
+                            height: 24,
+                            width: 24,
+                            color: Colors.black,
+                          )
+                              : Image.asset(
+                            "assets/Template1/image/Foodie/icons/restaurent-wall.png",
+                            height: 24,
+                            width: 24,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                    preferredSize: Size.fromHeight(100),
+                  ),
+                ),
               ),
+
               Container(
                 height: _fromTop != 0
                     ? MediaQuery.of(context).size.height - 103
@@ -455,7 +460,7 @@ class _MainPageState extends State<MainPage>
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.stretch,
+                                        CrossAxisAlignment.stretch,
                                         children: <Widget>[
                                           Container(
                                             child: Padding(
@@ -463,15 +468,15 @@ class _MainPageState extends State<MainPage>
                                                   left: 5.0, bottom: 2),
                                               child: Row(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                                MainAxisAlignment
+                                                    .spaceBetween,
                                                 crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                                 children: <Widget>[
                                                   Row(
                                                     crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
+                                                    CrossAxisAlignment
+                                                        .center,
                                                     children: <Widget>[
                                                       GestureDetector(
                                                         onTap: () {
@@ -479,31 +484,31 @@ class _MainPageState extends State<MainPage>
                                                               context: context,
                                                               builder:
                                                                   (BuildContext
-                                                                      context) {
+                                                              context) {
                                                                 return Dialog(
                                                                   backgroundColor:
-                                                                      Color(
-                                                                          0xFF1E2026),
+                                                                  Color(
+                                                                      0xFF1E2026),
                                                                   child:
-                                                                      Container(
+                                                                  Container(
                                                                     height: 230,
                                                                     width: 350,
                                                                     child:
-                                                                        Padding(
+                                                                    Padding(
                                                                       padding:
-                                                                          const EdgeInsets.all(
-                                                                              8.0),
+                                                                      const EdgeInsets.all(
+                                                                          8.0),
                                                                       child:
-                                                                          CachedNetworkImage(
+                                                                      CachedNetworkImage(
                                                                         placeholder:
                                                                             (context, ind) =>
-                                                                                Image.asset(
-                                                                          "assets/Template1/image/Foodie/post_dummy.jpeg",
-                                                                          fit: BoxFit
-                                                                              .cover,
-                                                                        ),
+                                                                            Image.asset(
+                                                                              "assets/Template1/image/Foodie/post_dummy.jpeg",
+                                                                              fit: BoxFit
+                                                                                  .cover,
+                                                                            ),
                                                                         imageUrl:
-                                                                            "https://firebasestorage.googleapis.com/v0/b/foodizwall.appspot.com/o/thumbs%2Ficu.png?alt=media",
+                                                                        "https://firebasestorage.googleapis.com/v0/b/foodizwall.appspot.com/o/thumbs%2Ficu.png?alt=media",
                                                                         fit: BoxFit
                                                                             .cover,
                                                                       ),
@@ -515,7 +520,7 @@ class _MainPageState extends State<MainPage>
                                                         child: Container(
                                                           height: 38.0,
                                                           clipBehavior:
-                                                              Clip.antiAlias,
+                                                          Clip.antiAlias,
                                                           width: 38.0,
                                                           decoration: BoxDecoration(
                                                               border: Border.all(
@@ -523,8 +528,8 @@ class _MainPageState extends State<MainPage>
                                                                       0xFF48c0d8))),
                                                               borderRadius: BorderRadius
                                                                   .all(Radius
-                                                                      .circular(
-                                                                          180.0))),
+                                                                  .circular(
+                                                                  180.0))),
                                                           child: Center(
                                                             child: Container(
                                                               clipBehavior: Clip
@@ -532,17 +537,17 @@ class _MainPageState extends State<MainPage>
                                                               height: 35,
                                                               decoration: BoxDecoration(
                                                                   borderRadius:
-                                                                      BorderRadius.all(
-                                                                          Radius.circular(
-                                                                              180.0))),
+                                                                  BorderRadius.all(
+                                                                      Radius.circular(
+                                                                          180.0))),
                                                               width: 35,
                                                               child: Center(
                                                                   child: Image
                                                                       .asset(
-                                                                "assets/Template1/image/Foodie/icu.png",
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                              )),
+                                                                    "assets/Template1/image/Foodie/icu.png",
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  )),
                                                             ),
                                                           ),
                                                         ),
@@ -555,8 +560,8 @@ class _MainPageState extends State<MainPage>
                                                           onTap: (){},
                                                           child: Column(
                                                             crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
+                                                            CrossAxisAlignment
+                                                                .start,
                                                             children: <Widget>[
                                                               GestureDetector(
                                                                 onTap:(){},
@@ -576,7 +581,7 @@ class _MainPageState extends State<MainPage>
                                                                   Text(
                                                                       "2 mits ago",
                                                                       style:
-                                                                          f10g),
+                                                                      f10g),
                                                                 ],
                                                               )
                                                             ],
@@ -587,24 +592,24 @@ class _MainPageState extends State<MainPage>
                                                   ),
                                                   Row(
                                                     crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                    CrossAxisAlignment
+                                                        .start,
                                                     children: <Widget>[
                                                       Container(
                                                         height: 23,
                                                         child: MaterialButton(
                                                           onPressed: () {},
                                                           splashColor:
-                                                              Color(0xFFffd55e),
+                                                          Color(0xFFffd55e),
                                                           shape: RoundedRectangleBorder(
                                                               borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          2)),
+                                                              BorderRadius
+                                                                  .circular(
+                                                                  2)),
                                                           height: 23,
                                                           minWidth: 70,
                                                           color:
-                                                              Color(0xFF48c0d9),
+                                                          Color(0xFF48c0d9),
                                                           child: Center(
                                                               child: Text(
                                                                   "Follow",
@@ -618,9 +623,9 @@ class _MainPageState extends State<MainPage>
                                                         // "sex": "female"},{}]
                                                           onTap: () async {
                                                             SharedPreferences
-                                                                _pref =
-                                                                await SharedPreferences
-                                                                    .getInstance();
+                                                            _pref =
+                                                            await SharedPreferences
+                                                                .getInstance();
                                                             setState(() {
                                                               _pref.setBool(
                                                                   "show", true);
@@ -629,7 +634,7 @@ class _MainPageState extends State<MainPage>
                                                             print("Setting value " +
                                                                 _pref
                                                                     .getBool(
-                                                                        "show")
+                                                                    "show")
                                                                     .toString());
                                                           },
                                                           child: Icon(
@@ -641,42 +646,42 @@ class _MainPageState extends State<MainPage>
                                                         onTap: () {
                                                           showModalBottomSheet(
                                                               backgroundColor:
-                                                                  Color(
-                                                                      0xFF1E2026),
+                                                              Color(
+                                                                  0xFF1E2026),
                                                               context: context,
                                                               clipBehavior: Clip
                                                                   .antiAlias,
                                                               builder:
                                                                   (BuildContext
-                                                                      context) {
+                                                              context) {
                                                                 return StatefulBuilder(builder:
                                                                     (BuildContext
-                                                                            context,
-                                                                        StateSetter
-                                                                            state) {
+                                                                context,
+                                                                    StateSetter
+                                                                    state) {
                                                                   return Padding(
                                                                     padding: const EdgeInsets
-                                                                            .only(
+                                                                        .only(
                                                                         bottom:
-                                                                            5.0,
+                                                                        5.0,
                                                                         top: 5,
                                                                         right:
-                                                                            10,
+                                                                        10,
                                                                         left:
-                                                                            10),
+                                                                        10),
                                                                     child: Wrap(
                                                                       children: <
                                                                           Widget>[
                                                                         //edit post
                                                                         Padding(
                                                                           padding:
-                                                                              const EdgeInsets.all(6.0),
+                                                                          const EdgeInsets.all(6.0),
                                                                           child:
-                                                                              InkWell(
+                                                                          InkWell(
                                                                             onTap:
                                                                                 () {},
                                                                             child:
-                                                                                Container(
+                                                                            Container(
                                                                               child: Row(
                                                                                 crossAxisAlignment: CrossAxisAlignment.center,
                                                                                 children: <Widget>[
@@ -700,9 +705,9 @@ class _MainPageState extends State<MainPage>
                                                                         //delete post
                                                                         Padding(
                                                                           padding:
-                                                                              const EdgeInsets.all(6.0),
+                                                                          const EdgeInsets.all(6.0),
                                                                           child:
-                                                                              InkWell(
+                                                                          InkWell(
                                                                             onTap:
                                                                                 () {
                                                                               Navigator.pop(context);
@@ -747,7 +752,7 @@ class _MainPageState extends State<MainPage>
                                                                                   });
                                                                             },
                                                                             child:
-                                                                                Container(
+                                                                            Container(
                                                                               child: Row(
                                                                                 crossAxisAlignment: CrossAxisAlignment.center,
                                                                                 children: <Widget>[
@@ -783,15 +788,15 @@ class _MainPageState extends State<MainPage>
                                                                         //save post
                                                                         Padding(
                                                                           padding:
-                                                                              const EdgeInsets.all(6.0),
+                                                                          const EdgeInsets.all(6.0),
                                                                           child:
-                                                                              InkWell(
+                                                                          InkWell(
                                                                             onTap:
                                                                                 () {
                                                                               Navigator.pop(context);
                                                                             },
                                                                             child:
-                                                                                Container(
+                                                                            Container(
                                                                               child: Row(
                                                                                 crossAxisAlignment: CrossAxisAlignment.center,
                                                                                 children: <Widget>[
@@ -827,15 +832,15 @@ class _MainPageState extends State<MainPage>
                                                                         //report post
                                                                         Padding(
                                                                           padding:
-                                                                              const EdgeInsets.all(6.0),
+                                                                          const EdgeInsets.all(6.0),
                                                                           child:
-                                                                              InkWell(
+                                                                          InkWell(
                                                                             onTap:
                                                                                 () {
                                                                               Navigator.pop(context);
                                                                             },
                                                                             child:
-                                                                                Container(
+                                                                            Container(
                                                                               child: Row(
                                                                                 crossAxisAlignment: CrossAxisAlignment.center,
                                                                                 children: <Widget>[
@@ -871,9 +876,9 @@ class _MainPageState extends State<MainPage>
                                                                         //follooww user
                                                                         Padding(
                                                                           padding:
-                                                                              const EdgeInsets.all(6.0),
+                                                                          const EdgeInsets.all(6.0),
                                                                           child:
-                                                                              InkWell(
+                                                                          InkWell(
                                                                             onTap:
                                                                                 () {
                                                                               showDialog(
@@ -915,7 +920,7 @@ class _MainPageState extends State<MainPage>
                                                                               Navigator.pop(context);
                                                                             },
                                                                             child:
-                                                                                Container(
+                                                                            Container(
                                                                               child: Row(
                                                                                 crossAxisAlignment: CrossAxisAlignment.center,
                                                                                 children: <Widget>[
@@ -951,13 +956,13 @@ class _MainPageState extends State<MainPage>
                                                                         // copy   post
                                                                         Padding(
                                                                           padding:
-                                                                              const EdgeInsets.all(6.0),
+                                                                          const EdgeInsets.all(6.0),
                                                                           child:
-                                                                              InkWell(
+                                                                          InkWell(
                                                                             onTap:
                                                                                 () {},
                                                                             child:
-                                                                                Container(
+                                                                            Container(
                                                                               child: Row(
                                                                                 crossAxisAlignment: CrossAxisAlignment.center,
                                                                                 children: <Widget>[
@@ -993,13 +998,13 @@ class _MainPageState extends State<MainPage>
                                                                         //share post
                                                                         Padding(
                                                                           padding:
-                                                                              const EdgeInsets.all(6.0),
+                                                                          const EdgeInsets.all(6.0),
                                                                           child:
-                                                                              InkWell(
+                                                                          InkWell(
                                                                             onTap:
                                                                                 () {},
                                                                             child:
-                                                                                Container(
+                                                                            Container(
                                                                               child: Row(
                                                                                 crossAxisAlignment: CrossAxisAlignment.center,
                                                                                 children: <Widget>[
@@ -1041,7 +1046,7 @@ class _MainPageState extends State<MainPage>
                                                         child: Icon(
                                                             Icons.more_vert,
                                                             color:
-                                                                Colors.white),
+                                                            Colors.white),
                                                       ),
                                                     ],
                                                   )
@@ -1051,29 +1056,29 @@ class _MainPageState extends State<MainPage>
                                           ),
                                           index == 1
                                               ? Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 8,
-                                                          right: 8,
-                                                          bottom: 5,
-                                                          top: 3),
-                                                  child: SmartText(
-                                                    text:
-                                                        "Chicken Biriyani  -  with salad and pappad",
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                    ),
-                                                    onOpen: (link) {},
-                                                    onTagClick: (tag) {},
-                                                  ),
-                                                )
+                                            padding:
+                                            const EdgeInsets.only(
+                                                left: 8,
+                                                right: 8,
+                                                bottom: 5,
+                                                top: 3),
+                                            child: SmartText(
+                                              text:
+                                              "Chicken Biriyani  -  with salad and pappad",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                              onOpen: (link) {},
+                                              onTagClick: (tag) {},
+                                            ),
+                                          )
                                               : Container(),
                                           Padding(
                                               padding: const EdgeInsets.only(
                                                   left: 8, right: 8),
                                               child: SmartText(
                                                 text:
-                                                    "asdf sdcfgv dcfvgbh cfvgbh xcfvgh",
+                                                "asdf sdcfgv dcfvgbh cfvgbh xcfvgh",
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                 ),
@@ -1085,46 +1090,46 @@ class _MainPageState extends State<MainPage>
                                           ),
                                           index == 3
                                               ? Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 5.0),
-                                                  child: Container(
-                                                    color: Colors.grey[850],
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        SizedBox(
-                                                          height: 8,
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  left: 10,
-                                                                  right: 10,
-                                                                  bottom: 5),
-                                                          child: Text(
-                                                            "Foodi Market item @ Rs.",
-                                                            style: f15wB,
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .only(
-                                                            top: 6,
-                                                          ),
-                                                          child: Container(
-                                                            height: 300,
-                                                            width:
-                                                                MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width,
-                                                            child:
-                                                                /* CachedNetworkImage(
+                                            padding:
+                                            const EdgeInsets.only(
+                                                top: 5.0),
+                                            child: Container(
+                                              color: Colors.grey[850],
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment
+                                                    .start,
+                                                children: [
+                                                  SizedBox(
+                                                    height: 8,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                    const EdgeInsets
+                                                        .only(
+                                                        left: 10,
+                                                        right: 10,
+                                                        bottom: 5),
+                                                    child: Text(
+                                                      "Foodi Market item @ Rs.",
+                                                      style: f15wB,
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                    const EdgeInsets
+                                                        .only(
+                                                      top: 6,
+                                                    ),
+                                                    child: Container(
+                                                      height: 300,
+                                                      width:
+                                                      MediaQuery.of(
+                                                          context)
+                                                          .size
+                                                          .width,
+                                                      child:
+                                                      /* CachedNetworkImage(
                                                           imageUrl: "https://firebasestorage.googleapis.com/v0/b/foodizwall.appspot.com/o/thumbs%2Ficu.png?alt=media",
                                                           fit: BoxFit.cover,
                                                           placeholder: (context,
@@ -1132,150 +1137,150 @@ class _MainPageState extends State<MainPage>
                                                             "assets/Template1/image/Foodie/post_dummy.jpeg",
                                                             fit: BoxFit.cover,)
                                                       )*/
-                                                                Image.asset(
-                                                              "assets/Template1/image/Foodie/chinese.jpg",
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
+                                                      Image.asset(
+                                                        "assets/Template1/image/Foodie/chinese.jpg",
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                    const EdgeInsets
+                                                        .only(
+                                                        top: 8,
+                                                        bottom: 8,
+                                                        left: 10,
+                                                        right: 10),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          DateFormat
+                                                              .yMMMd()
+                                                              .format(
+                                                              DateTime
+                                                                  .now())
+                                                              .toString(),
+                                                          style: f13w,
                                                         ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  top: 8,
-                                                                  bottom: 8,
-                                                                  left: 10,
-                                                                  right: 10),
-                                                          child: Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceBetween,
-                                                            children: [
-                                                              Text(
-                                                                DateFormat
-                                                                        .yMMMd()
-                                                                    .format(
-                                                                        DateTime
-                                                                            .now())
-                                                                    .toString(),
-                                                                style: f13w,
-                                                              ),
-                                                              Row(
-                                                                children: [
-                                                                  Text(
-                                                                    "\u20B9 100",
-                                                                    style:
-                                                                        f16wB,
-                                                                  ),
-                                                                  SizedBox(
-                                                                    width: 15,
-                                                                  ),
-                                                                  Container(
-                                                                    height: 25,
-                                                                    child:
-                                                                        MaterialButton(
-                                                                      color: Color(
-                                                                          0xFFffd55e),
-                                                                      splashColor:
-                                                                          Color(
-                                                                              0xFF48c0d8),
-                                                                      height:
-                                                                          25,
-                                                                      minWidth:
-                                                                          90,
-                                                                      shape: RoundedRectangleBorder(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(8)),
-                                                                      onPressed:
-                                                                          () {},
-                                                                      child:
-                                                                          Row(
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.center,
-                                                                        children: [
-                                                                          Icon(
-                                                                            Icons.chat,
-                                                                            size:
-                                                                                17,
-                                                                            color:
-                                                                                Colors.black,
-                                                                          ),
-                                                                          SizedBox(
-                                                                            width:
-                                                                                3,
-                                                                          ),
-                                                                          Text(
-                                                                            "Chat",
-                                                                            style:
-                                                                                f14B,
-                                                                          ),
-                                                                        ],
-                                                                      ),
+                                                        Row(
+                                                          children: [
+                                                            Text(
+                                                              "\u20B9 100",
+                                                              style:
+                                                              f16wB,
+                                                            ),
+                                                            SizedBox(
+                                                              width: 15,
+                                                            ),
+                                                            Container(
+                                                              height: 25,
+                                                              child:
+                                                              MaterialButton(
+                                                                color: Color(
+                                                                    0xFFffd55e),
+                                                                splashColor:
+                                                                Color(
+                                                                    0xFF48c0d8),
+                                                                height:
+                                                                25,
+                                                                minWidth:
+                                                                90,
+                                                                shape: RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                    BorderRadius.circular(8)),
+                                                                onPressed:
+                                                                    () {},
+                                                                child:
+                                                                Row(
+                                                                  mainAxisAlignment:
+                                                                  MainAxisAlignment.center,
+                                                                  children: [
+                                                                    Icon(
+                                                                      Icons.chat,
+                                                                      size:
+                                                                      17,
+                                                                      color:
+                                                                      Colors.black,
                                                                     ),
-                                                                  )
-                                                                ],
-                                                              )
-                                                            ],
-                                                          ),
+                                                                    SizedBox(
+                                                                      width:
+                                                                      3,
+                                                                    ),
+                                                                    Text(
+                                                                      "Chat",
+                                                                      style:
+                                                                      f14B,
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            )
+                                                          ],
                                                         )
                                                       ],
                                                     ),
-                                                  ),
-                                                )
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          )
                                               : Container(
-                                                  height: 0,
-                                                ),
+                                            height: 0,
+                                          ),
                                           SizedBox(
                                             height: 5,
                                           ),
                                           index == 5
                                               ? Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 8,
-                                                          right: 8,
-                                                          top: 5),
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                        border: Border.all(
-                                                            color: Colors
-                                                                .grey[300],
-                                                            width: .2)),
-                                                    child: Padding(
+                                            padding:
+                                            const EdgeInsets.only(
+                                                left: 8,
+                                                right: 8,
+                                                top: 5),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Colors
+                                                          .grey[300],
+                                                      width: .2)),
+                                              child: Padding(
+                                                padding:
+                                                const EdgeInsets.all(
+                                                    8.0),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment
+                                                      .start,
+                                                  children: [
+                                                    Text(
+                                                      "FREE FOOD ITEM",
+                                                      style: f16wB,
+                                                    ),
+                                                    SizedBox(
+                                                      height: 3,
+                                                    ),
+                                                    Text(
+                                                      "Bank Item Name",
+                                                      style: f15wB,
+                                                    ),
+                                                    Padding(
                                                       padding:
-                                                          const EdgeInsets.all(
-                                                              8.0),
-                                                      child: Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            "FREE FOOD ITEM",
-                                                            style: f16wB,
-                                                          ),
-                                                          SizedBox(
-                                                            height: 3,
-                                                          ),
-                                                          Text(
-                                                            "Bank Item Name",
-                                                            style: f15wB,
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    top: 6,
-                                                                    bottom: 7),
-                                                            child: Container(
-                                                              height: 300,
-                                                              width:
-                                                                  MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width,
-                                                              child:
-                                                                  /*CachedNetworkImage(
+                                                      const EdgeInsets
+                                                          .only(
+                                                          top: 6,
+                                                          bottom: 7),
+                                                      child: Container(
+                                                        height: 300,
+                                                        width:
+                                                        MediaQuery.of(
+                                                            context)
+                                                            .size
+                                                            .width,
+                                                        child:
+                                                        /*CachedNetworkImage(
                                                             imageUrl: "https://firebasestorage.googleapis.com/v0/b/foodizwall.appspot.com/o/thumbs%2Ficu.png?alt=media" ,
                                                             fit: BoxFit.cover,
                                                             placeholder: (context,
@@ -1283,77 +1288,77 @@ class _MainPageState extends State<MainPage>
                                                               "assets/Template1/image/Foodie/post_dummy.jpeg",
                                                               fit: BoxFit.cover,)
                                                         )*/
-                                                                  Image.asset(
-                                                                "assets/Template1/image/Foodie/biriyani.jpg",
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceBetween,
-                                                            children: [
-                                                              Row(
-                                                                children: [
-                                                                  Icon(
-                                                                    Icons
-                                                                        .location_on,
-                                                                    color: Colors
-                                                                        .grey,
-                                                                    size: 18,
-                                                                  ),
-                                                                  Text(
-                                                                    "3 km Away",
-                                                                    style: f15w,
-                                                                  )
-                                                                ],
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                            .only(
-                                                                        bottom:
-                                                                            4.0,
-                                                                        top: 4),
-                                                                child:
-                                                                    Container(
-                                                                  height: 30,
-                                                                  child:
-                                                                      MaterialButton(
-                                                                    splashColor:
-                                                                        Color(
-                                                                            0xFFffd55e),
-                                                                    shape: RoundedRectangleBorder(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(6)),
-                                                                    height: 30,
-                                                                    minWidth:
-                                                                        150,
-                                                                    color: Color(
-                                                                        0xFF48c0d9),
-                                                                    onPressed:
-                                                                        () {},
-                                                                    child: Center(
-                                                                        child: Text(
-                                                                      "Request This",
-                                                                      style:
-                                                                          f15B,
-                                                                    )),
-                                                                  ),
-                                                                ),
-                                                              )
-                                                            ],
-                                                          )
-                                                        ],
+                                                        Image.asset(
+                                                          "assets/Template1/image/Foodie/biriyani.jpg",
+                                                          fit: BoxFit
+                                                              .cover,
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                )
-                                              : Container(
-                                                  height: 0,
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                      children: [
+                                                        Row(
+                                                          children: [
+                                                            Icon(
+                                                              Icons
+                                                                  .location_on,
+                                                              color: Colors
+                                                                  .grey,
+                                                              size: 18,
+                                                            ),
+                                                            Text(
+                                                              "3 km Away",
+                                                              style: f15w,
+                                                            )
+                                                          ],
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                          const EdgeInsets
+                                                              .only(
+                                                              bottom:
+                                                              4.0,
+                                                              top: 4),
+                                                          child:
+                                                          Container(
+                                                            height: 30,
+                                                            child:
+                                                            MaterialButton(
+                                                              splashColor:
+                                                              Color(
+                                                                  0xFFffd55e),
+                                                              shape: RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                  BorderRadius.circular(6)),
+                                                              height: 30,
+                                                              minWidth:
+                                                              150,
+                                                              color: Color(
+                                                                  0xFF48c0d9),
+                                                              onPressed:
+                                                                  () {},
+                                                              child: Center(
+                                                                  child: Text(
+                                                                    "Request This",
+                                                                    style:
+                                                                    f15B,
+                                                                  )),
+                                                            ),
+                                                          ),
+                                                        )
+                                                      ],
+                                                    )
+                                                  ],
                                                 ),
+                                              ),
+                                            ),
+                                          )
+                                              : Container(
+                                            height: 0,
+                                          ),
                                           /*index==2 ? Padding(
                                             padding: const EdgeInsets.only(left: 6, right: 6, bottom: 8, top: 3),
                                             child: InkWell(
@@ -1459,18 +1464,18 @@ class _MainPageState extends State<MainPage>
                                           ) : Container(height:0),*/
                                           index != 3 && index != 5
                                               ? Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 5, bottom: 5),
-                                                  child: GestureDetector(
-                                                    child: Container(
-                                                      height: 350,
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                              .size
-                                                              .width,
-                                                      child:
-                                                          /*CachedNetworkImage(
+                                            padding:
+                                            const EdgeInsets.only(
+                                                top: 5, bottom: 5),
+                                            child: GestureDetector(
+                                              child: Container(
+                                                height: 350,
+                                                width:
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                child:
+                                                /*CachedNetworkImage(
                                                     imageUrl: "https://firebasestorage.googleapis.com/v0/b/foodizwall.appspot.com/o/thumbs%2Ficu.png?alt=media",
                                                     fit: BoxFit.cover,
                                                     placeholder: (context,
@@ -1478,13 +1483,13 @@ class _MainPageState extends State<MainPage>
                                                       "assets/Template1/image/Foodie/post_dummy.jpeg",
                                                       fit: BoxFit.cover,)
                                                 )*/
-                                                          Image.asset(
-                                                        "assets/Template1/image/Foodie/arabian.png",
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                )
+                                                Image.asset(
+                                                  "assets/Template1/image/Foodie/arabian.png",
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            ),
+                                          )
                                               : Container(),
                                           Padding(
                                             padding: const EdgeInsets.only(
@@ -1493,13 +1498,13 @@ class _MainPageState extends State<MainPage>
                                               child: InkWell(
                                                 child: Row(
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                                   children: <Widget>[
                                                     Row(
                                                       mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
+                                                      MainAxisAlignment
+                                                          .start,
                                                       children: <Widget>[
                                                         GestureDetector(
                                                           onTap: () {},
@@ -1528,64 +1533,64 @@ class _MainPageState extends State<MainPage>
                                                       ],
                                                     ),
                                                     index != 5 &&
-                                                            index != 0 &&
-                                                            index != 2 &&
-                                                            index != 3 &&
-                                                            index != 7 &&
-                                                            index != 9
+                                                        index != 0 &&
+                                                        index != 2 &&
+                                                        index != 3 &&
+                                                        index != 7 &&
+                                                        index != 9
                                                         ? Row(
-                                                            children: [
-                                                              Row(
-                                                                children: [
-                                                                  GestureDetector(
-                                                                    onTap:
-                                                                        () {},
-                                                                    child: Image
-                                                                        .asset(
-                                                                      "assets/Template1/image/Foodie/icons/shopping-basket.png",
-                                                                      height:
-                                                                          24,
-                                                                      width: 24,
-                                                                      color: Color(
-                                                                          0xFFffd55e),
-                                                                    ),
-                                                                  ),
-                                                                  SizedBox(
-                                                                    width: 16,
-                                                                  ),
-                                                                  Container(
-                                                                    height: 27,
-                                                                    child:
-                                                                        MaterialButton(
-                                                                      splashColor:
-                                                                          Color(
-                                                                              0xFF48c0d8),
-                                                                      shape: RoundedRectangleBorder(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(6)),
-                                                                      height:
-                                                                          27,
-                                                                      minWidth:
-                                                                          80,
-                                                                      color: Color(
-                                                                          0xFFffd55e),
-                                                                      onPressed:
-                                                                          () {},
-                                                                      child:
-                                                                          Text(
-                                                                        "Buy Now",
-                                                                        style:
-                                                                            f14B,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  SizedBox(
-                                                                    width: 3,
-                                                                  )
-                                                                ],
+                                                      children: [
+                                                        Row(
+                                                          children: [
+                                                            GestureDetector(
+                                                              onTap:
+                                                                  () {},
+                                                              child: Image
+                                                                  .asset(
+                                                                "assets/Template1/image/Foodie/icons/shopping-basket.png",
+                                                                height:
+                                                                24,
+                                                                width: 24,
+                                                                color: Color(
+                                                                    0xFFffd55e),
                                                               ),
-                                                            ],
-                                                          )
+                                                            ),
+                                                            SizedBox(
+                                                              width: 16,
+                                                            ),
+                                                            Container(
+                                                              height: 27,
+                                                              child:
+                                                              MaterialButton(
+                                                                splashColor:
+                                                                Color(
+                                                                    0xFF48c0d8),
+                                                                shape: RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                    BorderRadius.circular(6)),
+                                                                height:
+                                                                27,
+                                                                minWidth:
+                                                                80,
+                                                                color: Color(
+                                                                    0xFFffd55e),
+                                                                onPressed:
+                                                                    () {},
+                                                                child:
+                                                                Text(
+                                                                  "Buy Now",
+                                                                  style:
+                                                                  f14B,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            SizedBox(
+                                                              width: 3,
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    )
                                                         : Container()
                                                   ],
                                                 ),
@@ -1602,8 +1607,8 @@ class _MainPageState extends State<MainPage>
                                                   width: double.infinity,
                                                   child: Row(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                     children: <Widget>[
                                                       GestureDetector(
                                                         onTap: () {},
@@ -1633,7 +1638,7 @@ class _MainPageState extends State<MainPage>
                                                               Icons
                                                                   .chat_bubble_outline,
                                                               color:
-                                                                  Colors.white,
+                                                              Colors.white,
                                                               size: 18,
                                                             ),
                                                             SizedBox(
@@ -1713,9 +1718,9 @@ class _MainPageState extends State<MainPage>
                           : Container(),
                       _tabContoller.index == 3
                           ? Text(
-                              "FoodiMarket",
-                              style: f15bB,
-                            )
+                        "FoodiMarket",
+                        style: f15bB,
+                      )
                           : Container(),
                       _tabContoller.index == 4
                           ? FoodBank()
@@ -1743,3 +1748,4 @@ class _MainPageState extends State<MainPage>
     );
   }
 }
+

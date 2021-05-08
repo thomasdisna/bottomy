@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:foodiz/widget_style.dart';
+
+
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import 'Constants.dart';
+
 
 class CreateAccount2 extends StatefulWidget {
   @override

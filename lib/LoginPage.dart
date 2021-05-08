@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:foodiz/widget_style.dart';
+
+import 'file:///D:/flutter/bottomy/lib/Constants.dart';
+
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-import 'Constants.dart';
-import 'CreateAccount1.dart';
 import 'Responsive.dart';
+
+import 'CreateAccount1.dart';
 
 class LoginPage extends StatefulWidget {
   @override

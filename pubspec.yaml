@@ -254,6 +254,8 @@ flutter:
     - assets/icon/Lunch.png
     - assets/icon/fashfood.png
 
+    - assets/image/demo.jpg
+    - assets/image/youtube.png
     - assets/image/image_recipe/recipe1.jpg
     - assets/image/image_recipe/recipe2.jpg
     - assets/image/image_recipe/recipe3.jpg

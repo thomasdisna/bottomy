@@ -1,18 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
 import 'package:foodiz/Responsive.dart';
-import 'package:foodiz/widget_style.dart';
+
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Constants.dart';
 
-class LastPage extends StatefulWidget {
+
+
+
+
+class ThirdSection extends StatefulWidget {
   @override
-  _LastPageState createState() => _LastPageState();
+  _ThirdSectionState createState() => _ThirdSectionState();
 }
 
-class _LastPageState extends State<LastPage> {
+class _ThirdSectionState extends State<ThirdSection> {
 
   bool _viewmore;
   bool _homekitchen;

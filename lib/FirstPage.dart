@@ -1,14 +1,28 @@
-import 'package:flutter/material.dart';
-import 'package:foodiz/ConstantsAkhil.dart';
-import 'package:foodiz/Responsive.dart';
-import 'package:foodiz/widget_style.dart';
 
-class FirstSection extends StatefulWidget {
+
+
+
+import 'package:flutter/material.dart';
+
+import 'package:foodiz/Responsive.dart';
+
+import 'Constants.dart';
+
+
+
+class FirstPage extends StatefulWidget {
   @override
-  _FirstSectionState createState() => _FirstSectionState();
+  _FirstPageState createState() => _FirstPageState();
 }
 
-class _FirstSectionState extends State<FirstSection> {
+class _FirstPageState extends State<FirstPage> {
+
+
+  String card1 = "local store";
+  String card2 = "restaurant";
+  String card3 = "delivery warrior";
+
+
   @override
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
@@ -223,18 +237,25 @@ class _FirstSectionState extends State<FirstSection> {
                             SizedBox(
                               height: 2,
                             ),
-                            Container(
-                              width: w / 2,
-                              decoration: BoxDecoration(
-                                color: Color(0xff827717),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Center(
-                                  child: Text(
-                                    "Register local store",
-                                    style: f10w,
+                            InkWell(
+                              onTap: (){
+
+
+
+                              },
+                              child: Container(
+                                width: w / 2,
+                                decoration: BoxDecoration(
+                                  color: Color(0xff827717),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Center(
+                                    child: Text(
+                                      card1,
+                                      style: f10w,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -282,18 +303,23 @@ class _FirstSectionState extends State<FirstSection> {
                             SizedBox(
                               height: 2,
                             ),
-                            Container(
-                              width: w / 2,
-                              decoration: BoxDecoration(
-                                color: Color(0xff827717),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Center(
-                                  child: Text(
-                                    "Register restaurant",
-                                    style: f10w,
+                            InkWell(
+                              onTap: (){
+
+                              },
+                              child: Container(
+                                width: w / 2,
+                                decoration: BoxDecoration(
+                                  color: Color(0xff827717),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Center(
+                                    child: Text(
+                                      card2,
+                                      style: f10w,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -323,36 +349,43 @@ class _FirstSectionState extends State<FirstSection> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
-                              Icons.home,
+                              Icons.directions_bike_rounded,
                               color: Colors.white,
                             ),
                             Text(
-                              " Local\nMarket",
+                              "Delivery\nWarrior",
                               style: whi,
                             )
                           ],
                         ),
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              "Register as a lrocal supplier",
+                              "join our delivery warrior team\n"
+                                  "         in just few steps",
                               style: f10w,
                             ),
                             SizedBox(
                               height: 2,
                             ),
-                            Container(
-                              width: w / 2,
-                              decoration: BoxDecoration(
-                                color: Color(0xff827717),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Center(
-                                  child: Text(
-                                    "Register local store",
-                                    style: f10w,
+                            InkWell(
+                              onTap: (){
+                               
+                              },
+                              child: Container(
+                                width: w / 2,
+                                decoration: BoxDecoration(
+                                  color: Color(0xff827717),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Center(
+                                    child: Text(
+                                      card3,
+                                      style: f10w,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -364,16 +397,24 @@ class _FirstSectionState extends State<FirstSection> {
                   ),
                 ),
               ),
+              MaterialButton(
+                color: Colors.red,
+                child: Text("tap"),
+                  onPressed: (){
+                setState(() {
+
+                });
+              })
               //
             ],
           ),
         ),
       );
-
   }
 }
 
 class TileContainer extends StatelessWidget {
+
   final IconData iconsDemo;
 
   final String label;
