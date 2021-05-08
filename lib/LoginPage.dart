@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:foodiz/Constants.dart';
 
-import 'file:///D:/flutter/bottomy/lib/Constants.dart';
 
 import 'package:pin_code_fields/pin_code_fields.dart';
 

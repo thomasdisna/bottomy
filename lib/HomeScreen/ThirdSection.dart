@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'file:///D:/flutter/bottomy/lib/LastPage.dart';
+import 'package:foodiz/LastPage.dart';
 
 
 

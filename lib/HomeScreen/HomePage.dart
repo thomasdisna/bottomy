@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:foodiz/HomeScreen/item_detail.dart';
 import 'package:foodiz/SecondPage.dart';
 import '../FirstPage.dart';
 import '../LastPage.dart';
@@ -1046,9 +1047,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Expanded(flex: _size.width > 1251 ? 2 : 5, child: Container(
                         width: w *2/4,
-                        child:secondCon == 1 && step == 1 ? SecondPage() : secondCon == 1 && step == 2 ?Container(
-                          color: Colors.green,
-                        ):Container(),
+                        child:secondCon == 1 && step == 1 ? SecondPage() : secondCon == 1 && step == 2 ?EachItemDetailPage():Container(),
                       )),
                       Expanded(flex: _size.width > 1251 ? 1 : 5, child: Container(
                         width: w/4,
